@@ -1,9 +1,12 @@
-const bodyParser = require("body-parser");
 const async = require("async");
+const bodyParser = require("body-parser");
+const cors = require("cors");
 const db = require("../schema");
 
 module.exports = app => {
 	app.use(bodyParser());
+
+	app.use(cors());
 
 	app.get("/api/search", (req, res) => {
 		const { page, query } = req.query;
@@ -31,6 +34,7 @@ module.exports = app => {
 				if (err) {
 					return cb(err);
 				}
+
 				cb(null, count);
 			});
 		};
