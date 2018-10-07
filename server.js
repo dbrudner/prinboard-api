@@ -13,8 +13,6 @@ if (process.env.MONGODB_URI) {
 		err => {
 			if (err) {
 				throw err;
-			} else {
-				console.log("connected");
 			}
 		}
 	);
