@@ -1,24 +1,26 @@
 {
-    "name": "prinboard-api",
-    "version": "1.0.0",
-    "description": "",
-    "main": "server.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "node server.js",
-        "dev": "nodemon server.js"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "dependencies": {
-        "async": "^2.6.1",
-        "body-parser": "^1.18.3",
-        "express": "^4.16.3",
-        "mongodb": "^3.1.6",
-        "mongoose": "^5.3.1"
-    },
-    "devDependencies": {
-        "nodemon": "^1.18.4"
-    }
+	"name": "prinboard-api",
+	"version": "1.0.0",
+	"description": "",
+	"main": "server.js",
+	"scripts": {
+		"start": "node server.js",
+		"heroku-prebuild": "npm install",
+		"heroku-postbuild": "start",
+		"dev": "nodemon server.js"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"async": "^2.6.1",
+		"body-parser": "^1.18.3",
+		"cors": "^2.8.4",
+		"express": "^4.16.3",
+		"mongodb": "^3.1.6",
+		"mongoose": "^5.3.1"
+	},
+	"devDependencies": {
+		"nodemon": "^1.18.4"
+	}
 }
