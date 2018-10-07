@@ -9,7 +9,6 @@
 	"scripts": {
 		"start": "node server.js",
 		"heroku-prebuild": "npm install",
-		"heroku-postbuild": "npm start",
 		"dev": "nodemon server.js"
 	},
 	"keywords": [],
