@@ -15,10 +15,9 @@ module.exports = app => {
 		};
 
 		const paginatedResultsQuery = cb => {
-			db.Link.createIndexes({ author: "text", name: "text" });
-
 			db.Link.find(searchQuery)
-				.skip(parseInt(page) || 0)
+				.sort({ created_at: -1 })
+				.skip((parseInt(page - 1) || 0) * 5)
 				.limit(5)
 				.exec((err, results) => {
 					if (err) {
