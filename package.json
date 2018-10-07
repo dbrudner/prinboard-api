@@ -1,12 +1,15 @@
 {
 	"name": "prinboard-api",
+	"engines": {
+		"node": "8.9.1"
+	},
 	"version": "1.0.0",
 	"description": "",
 	"main": "server.js",
 	"scripts": {
 		"start": "node server.js",
 		"heroku-prebuild": "npm install",
-		"heroku-postbuild": "start",
+		"heroku-postbuild": "npm start",
 		"dev": "nodemon server.js"
 	},
 	"keywords": [],
