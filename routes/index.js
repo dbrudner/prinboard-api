@@ -14,9 +14,9 @@ module.exports = app => {
 			$text: { $search: query }
 		};
 
-		db.Link.createIndexes({ author: "text", name: "text" });
-
 		const paginatedResultsQuery = cb => {
+			db.Link.createIndexes({ author: "text", name: "text" });
+
 			db.Link.find(searchQuery)
 				.skip(parseInt(page) || 0)
 				.limit(5)
