@@ -10,4 +10,8 @@ const linkSchema = new Schema({
 	url: { type: String, required: true }
 });
 
-module.exports = mongoose.model("Link", linkSchema);
+const linkModel = mongoose.model("Link", linkSchema);
+
+linkModel.createIndexes({ author: "text", name: "text" });
+
+module.exports = linkModel;
