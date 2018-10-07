@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
 const routes = require("./routes")(app);
-const port = process.env.PORT;
+const port = 3000 || process.env.PORT;
 const developmentUrl = "mongodb://localhost/prinboard";
 
 if (process.env.MONGODB_URI) {
