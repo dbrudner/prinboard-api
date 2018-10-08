@@ -21,9 +21,9 @@ A headless API to get, post, update, and delete links.
 
 -   **/api/search/**
 	* Search for links. Text match for name and author.
-	* Query Params:
-	* page - Results page number
-	* query - Search term
+	* Query params:
+		* page - Results page number
+		* query - Search term
 	* Example:
 
 			api/search?query=principal&page=2
