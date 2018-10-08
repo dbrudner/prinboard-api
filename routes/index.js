@@ -86,4 +86,10 @@ module.exports = app => {
 			res.json(`Deleted post ${_id}`);
 		});
 	});
+
+	app.get("/api/tags", (req, res) => {
+		db.Link.find().distinct("tags", (error, tags) => {
+			res.json(tags);
+		});
+	});
 };
