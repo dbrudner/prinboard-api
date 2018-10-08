@@ -21,7 +21,7 @@ module.exports = app => {
 				.limit(5)
 				.exec((err, results) => {
 					if (err) {
-						return cb(err);
+						throw err;
 					}
 
 					cb(null, { results, query: req.query });
@@ -31,7 +31,7 @@ module.exports = app => {
 		const countQuery = cb => {
 			db.Link.countDocuments(searchQuery, (err, count) => {
 				if (err) {
-					return cb(err);
+					throw err;
 				}
 
 				cb(null, count);
@@ -39,7 +39,10 @@ module.exports = app => {
 		};
 
 		async.parallel([paginatedResultsQuery, countQuery], (err, results) => {
-			if (err) throw err;
+			if (err) {
+				throw err;
+			}
+
 			res.json({ ...results[0], totalHits: results[1] });
 		});
 	});
@@ -48,9 +51,9 @@ module.exports = app => {
 		db.Link.create(req.body, (err, newLink) => {
 			if (err) {
 				throw err;
-			} else {
-				res.json(newLink);
 			}
+
+			res.json(newLink);
 		});
 	});
 
@@ -68,9 +71,9 @@ module.exports = app => {
 			(err, updatedLink) => {
 				if (err) {
 					throw err;
-				} else {
-					res.json({ ...updatedLink._doc, ...update });
 				}
+
+				res.json({ ...updatedLink._doc, ...update });
 			}
 		);
 	});
@@ -88,7 +91,11 @@ module.exports = app => {
 	});
 
 	app.get("/api/tags", (req, res) => {
-		db.Link.find().distinct("tags", (error, tags) => {
+		db.Link.find().distinct("tags", (err, tags) => {
+			if (err) {
+				throw err;
+			}
+
 			res.json(tags);
 		});
 	});

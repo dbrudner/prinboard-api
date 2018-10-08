@@ -11,7 +11,6 @@ const linkSchema = new Schema({
 });
 
 const linkModel = mongoose.model("Link", linkSchema);
-
 linkSchema.index({ name: "text", author: "text", tags: "text" });
 
 module.exports = linkModel;
