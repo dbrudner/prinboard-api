@@ -12,6 +12,6 @@ const linkSchema = new Schema({
 
 const linkModel = mongoose.model("Link", linkSchema);
 
-linkModel.createIndexes({ author: "text", name: "text" });
+linkModel.createIndexes({ author: "text", name: "text", tags: "text" });
 
 module.exports = linkModel;
