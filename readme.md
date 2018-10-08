@@ -2,7 +2,7 @@
 
 A headless API to get, post, update, and delete links.
 
-## Root Url
+## Root url
 
 https://prinboard-api.herokuapp.com/
 
