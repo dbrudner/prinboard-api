@@ -59,7 +59,12 @@ module.exports = app => {
 
 		db.Link.findOneAndUpdate(
 			{ _id },
-			{ ...update, updated_at: new Date() },
+			{
+				...update,
+				$push: {
+					updated_at: new Date()
+				}
+			},
 			(err, updatedLink) => {
 				if (err) {
 					throw err;
