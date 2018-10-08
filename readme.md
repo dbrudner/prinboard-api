@@ -34,6 +34,9 @@ A headless API to get, post, update, and delete links.
 		
 			api/delete/1234
 
+-   **/api/tags**
+	* returns an array of all unique tags
+
 ### Post
 
 -   **/api/update**
