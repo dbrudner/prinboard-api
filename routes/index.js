@@ -29,7 +29,7 @@ module.exports = app => {
 		};
 
 		const countQuery = cb => {
-			db.Link.countDocuments(query, (err, count) => {
+			db.Link.countDocuments(searchQuery, (err, count) => {
 				if (err) {
 					return cb(err);
 				}
