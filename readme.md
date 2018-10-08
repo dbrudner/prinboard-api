@@ -20,7 +20,7 @@ A headless API to get, post, update, and delete links.
 ### Get
 
 -   **/api/search/**
-	* Search for links. Text match for name and author.
+	* Search for links. Text match for name, author, and tag.
 	* Query params:
 		* page - Results page number
 		* query - Search term
