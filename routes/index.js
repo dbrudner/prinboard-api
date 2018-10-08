@@ -57,6 +57,7 @@ module.exports = app => {
 		});
 	});
 
+	// Should be using a param to get _id to find instead of having _id in the request object
 	app.post("/api/update", (req, res) => {
 		const { _id, ...update } = req.body;
 
