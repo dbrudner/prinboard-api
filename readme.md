@@ -40,7 +40,7 @@ https://prinboard-api.herokuapp.com/
 			api/delete/1234
 
 -   **/api/tags**
-	* returns an array of all unique tags.
+	* Returns an array of all unique tags.
 
 ### Post
 
