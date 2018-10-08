@@ -25,6 +25,7 @@ https://prinboard-api.herokuapp.com/
 
 -   **/api/search/**
 	* Search for links. Text match for name, author, and tag.
+	* Returns results sorted by date from newest to oldest.
 	* Query params:
 		* page - Results page number
 		* query - Search term
@@ -33,19 +34,19 @@ https://prinboard-api.herokuapp.com/
 			api/search?query=principal&page=2
 
 -   **/api/delete/:\_id**
-	* Deletes a link entry
+	* Deletes a link entry.
 	* Example: 
 		
 			api/delete/1234
 
 -   **/api/tags**
-	* returns an array of all unique tags
+	* returns an array of all unique tags.
 
 ### Post
 
 -   **/api/update**
 	* Updates a link entry.
-	* Pushes new date into updated_at array
+	* Pushes new date into updated_at array.
 	* Post body:
 		* \_id (required)
 		* any field with new value
@@ -54,7 +55,7 @@ https://prinboard-api.herokuapp.com/
 
 			{ _id: 1234, name: "new name" }
 -   **/api/new**
-	* Creates a new link entry using Link schema
+	* Creates a new link entry using Link schema.
 	* Example:
 
 			{
