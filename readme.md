@@ -4,7 +4,7 @@ A headless API to get, post, update, and delete links.
 
 ## Schema
 
--   Link
+###  Link
 
 		{
 			author: { type: String, required: true }
