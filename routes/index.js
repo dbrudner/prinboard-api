@@ -57,14 +57,11 @@ module.exports = app => {
 		});
 	});
 
-	// Should be using a param to get _id to find instead of having _id in the request object
-	app.post("/api/update", (req, res) => {
-		const { _id, ...update } = req.body;
-
+	app.post("/api/update/_id", (req, res) => {
 		db.Link.findOneAndUpdate(
-			{ _id },
+			{ req.params._id },
 			{
-				...update,
+				...req.body,
 				$push: {
 					updated_at: new Date()
 				}
@@ -74,7 +71,7 @@ module.exports = app => {
 					throw err;
 				}
 
-				res.json({ ...updatedLink._doc, ...update });
+				res.json({ ...updatedLink._doc });
 			}
 		);
 	});
