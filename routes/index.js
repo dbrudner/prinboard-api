@@ -57,9 +57,9 @@ module.exports = app => {
 		});
 	});
 
-	app.post("/api/update/_id", (req, res) => {
+	app.post("/api/update/:_id", (req, res) => {
 		db.Link.findOneAndUpdate(
-			{ req.params._id },
+			{ _id },
 			{
 				...req.body,
 				$push: {
