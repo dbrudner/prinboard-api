@@ -84,7 +84,7 @@ module.exports = app => {
 				throw err;
 			}
 
-			res.json(`Deleted post ${_id}`);
+			res.status(200).send(`Deleted post ${_id}`);
 		});
 	});
 
