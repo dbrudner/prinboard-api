@@ -4,9 +4,9 @@ const cors = require("cors");
 const db = require("../schema");
 
 module.exports = app => {
-	// Add headers
-	app.use(function(req, res, next) {
-		// Website you wish to allow to connect
+	app.use(bodyParser());
+
+	app.get("/api/search", (req, res) => {
 		res.setHeader("Access-Control-Allow-Origin", "*");
 
 		// Request methods you wish to allow
@@ -21,21 +21,6 @@ module.exports = app => {
 			"X-Requested-With,content-type"
 		);
 
-		next();
-	});
-
-	app.use(bodyParser());
-
-	app.use(function(req, res, next) {
-		res.header("Access-Control-Allow-Origin", "*");
-		res.header(
-			"Access-Control-Allow-Headers",
-			"Origin, X-Requested-With, Content-Type, Accept"
-		);
-		next();
-	});
-
-	app.get("/api/search", (req, res) => {
 		const { page, query } = req.query;
 		const searchQuery = {
 			$text: { $search: query }
