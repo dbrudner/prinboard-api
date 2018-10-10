@@ -12,24 +12,45 @@ module.exports = app => {
 
 	app.use(bodyParser());
 
+	app.get("/api/links", (req, res) => {
+		const { page } = req.query;
+		const paginatedResultsQuery = cb => {
+			db.Link.find()
+				.sort({ created_at: -1 })
+				.skip((parseInt(page - 1) || 0) * 5)
+				.limit(5)
+				.exec((err, results) => {
+					if (err) {
+						throw err;
+					}
+
+					cb(null, { results, query: req.query });
+				});
+		};
+
+		const countQuery = cb => {
+			db.Link.countDocuments({}, (err, count) => {
+				if (err) {
+					throw err;
+				}
+
+				cb(null, count);
+			});
+		};
+
+		async.parallel([paginatedResultsQuery, countQuery], (err, results) => {
+			if (err) {
+				throw err;
+			}
+
+			res.json({ ...results[0], totalHits: results[1] });
+		});
+	});
+
 	app.get("/api/search", (req, res) => {
-		res.setHeader("Access-Control-Allow-Origin", "*");
-
-		// Request methods you wish to allow
-		res.setHeader(
-			"Access-Control-Allow-Methods",
-			"GET, POST, OPTIONS, PUT, PATCH, DELETE"
-		);
-
-		// Request headers you wish to allow
-		res.setHeader(
-			"Access-Control-Allow-Headers",
-			"X-Requested-With,content-type"
-		);
-
 		const { page, query } = req.query;
 		const searchQuery = {
-			$text: { $search: query }
+			$text: { $search: query || "" }
 		};
 
 		const paginatedResultsQuery = cb => {
@@ -115,7 +136,4 @@ module.exports = app => {
 			res.json(tags);
 		});
 	});
-
-	app.use(allowCrossDomain());
-	app.use(allowCrossDomain);
 };
