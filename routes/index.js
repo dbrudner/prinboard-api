@@ -87,6 +87,7 @@ module.exports = app => {
 	});
 
 	app.post("/api/new", (req, res) => {
+		console.log(req.body);
 		db.Link.create(req.body, (err, newLink) => {
 			if (err) {
 				throw err;

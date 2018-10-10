@@ -22,7 +22,7 @@ app.use(function(req, res, next) {
 });
 
 const routes = require("./routes")(app);
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 const developmentUrl = "mongodb://localhost/prinboard";
 
 if (process.env.MONGODB_URI) {
