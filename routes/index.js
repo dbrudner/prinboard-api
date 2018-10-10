@@ -21,7 +21,7 @@ module.exports = app => {
 				.limit(5)
 				.exec((err, results) => {
 					if (err) {
-						throw err;
+						res.status(500).send("Something went wrong");
 					}
 
 					cb(null, { results, query: req.query });
@@ -31,7 +31,7 @@ module.exports = app => {
 		const countQuery = cb => {
 			db.Link.countDocuments({}, (err, count) => {
 				if (err) {
-					throw err;
+					res.status(500).send("Something went wrong");
 				}
 
 				cb(null, count);
@@ -40,7 +40,7 @@ module.exports = app => {
 
 		async.parallel([paginatedResultsQuery, countQuery], (err, results) => {
 			if (err) {
-				throw err;
+				res.status(500).send("Something went wrong");
 			}
 
 			res.json({ ...results[0], totalHits: results[1] });
@@ -60,7 +60,7 @@ module.exports = app => {
 				.limit(5)
 				.exec((err, results) => {
 					if (err) {
-						throw err;
+						res.status(500).send("Something went wrong");
 					}
 
 					cb(null, { results, query: req.query });
@@ -70,7 +70,7 @@ module.exports = app => {
 		const countQuery = cb => {
 			db.Link.countDocuments(searchQuery, (err, count) => {
 				if (err) {
-					throw err;
+					res.status(500).send("Something went wrong");
 				}
 
 				cb(null, count);
@@ -79,7 +79,7 @@ module.exports = app => {
 
 		async.parallel([paginatedResultsQuery, countQuery], (err, results) => {
 			if (err) {
-				throw err;
+				res.status(500).send("Something went wrong");
 			}
 
 			res.json({ ...results[0], totalHits: results[1] });
@@ -90,7 +90,7 @@ module.exports = app => {
 		console.log(req.body);
 		db.Link.create(req.body, (err, newLink) => {
 			if (err) {
-				throw err;
+				res.status(500).send("Something went wrong");
 			}
 
 			res.json(newLink);
@@ -108,7 +108,7 @@ module.exports = app => {
 			},
 			(err, updatedLink) => {
 				if (err) {
-					throw err;
+					res.status(500).send("Something went wrong");
 				}
 
 				res.json({ ...updatedLink._doc });
@@ -121,7 +121,7 @@ module.exports = app => {
 
 		db.Link.findOneAndDelete({ _id }, err => {
 			if (err) {
-				throw err;
+				res.status(500).send("Something went wrong");
 			}
 
 			res.status(200).send(`Deleted post ${_id}`);
@@ -131,7 +131,7 @@ module.exports = app => {
 	app.get("/api/tags", (req, res) => {
 		db.Link.find().distinct("tags", (err, tags) => {
 			if (err) {
-				throw err;
+				res.status(500).send("Something went wrong");
 			}
 
 			res.json(tags);
