@@ -87,12 +87,12 @@ module.exports = app => {
 	});
 
 	app.post("/api/new", (req, res) => {
-		console.log(req.body);
 		db.Link.create(req.body, (err, newLink) => {
 			if (err) {
+				// Leave this console.log for checking post bodies inside heroku logs if something goes wrong
+				console.log(req.body);
 				res.status(500).send("Something went wrong");
 			}
-
 			res.json(newLink);
 		});
 	});
