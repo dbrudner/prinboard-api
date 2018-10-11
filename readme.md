@@ -23,7 +23,7 @@ https://prinboard-api.herokuapp.com/
 
 ### Get
 
--   **/api/search/**
+-   **/api/fetch/**
 	* Search for links. Text match for name, author, and tag.
 	* Returns results sorted by date from newest to oldest.
 	* Query params:
@@ -39,7 +39,7 @@ https://prinboard-api.herokuapp.com/
 		
 			api/delete/1234
 
--   **/api/tags**
+-   **/api/fetch/tags**
 	* Returns an array of all unique tags.
 
 ### Post
@@ -54,7 +54,7 @@ https://prinboard-api.herokuapp.com/
 	* Example:
 
 			{ _id: 1234, name: "new name" }
--   **/api/new**
+-   **/api/create**
 	* Creates a new link entry using Link schema.
 	* Example:
 
