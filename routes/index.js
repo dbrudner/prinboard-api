@@ -61,6 +61,9 @@ module.exports = app => {
 
 	app.post("/api/create", (req, res) => {
 		db.Link.create(req.body, (err, newLink) => {
+			// Leave this console.log for checking post bodies inside heroku logs if something goes wrong
+			// Replace this with morgan or another logger at some point
+			console.log(req.body);
 			if (err) {
 				throw err;
 				res.status(500).send("Something went wrong");
