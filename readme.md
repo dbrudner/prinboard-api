@@ -23,37 +23,36 @@ https://prinboard-api.herokuapp.com/
 
 ### Get
 
--   **/api/fetch/**
-	* Search for links. Text match for name, author, and tag.
-	* Returns results sorted by date from newest to oldest.
+-   **/api/fetch*
+	* If no query param is provided, returns all links paginated and sorted by date.
+	* If a query param is provided, returns paginated results text matched for name, author, and tag sorted by date.
 	* Query params:
-		* page - Results page number
-		* query - Search term
+		* **page** - Results page number
+		* **query** - Search term
 	* Example:
 
-			api/search?query=principal&page=2
+			api/fetch?query=principal&page=2
 
 -   **/api/delete/:\_id**
 	* Deletes a link entry.
+	* Returns status 200 upon successful deletion.
 	* Example: 
 		
 			api/delete/1234
 
 -   **/api/fetch/tags**
-	* Returns an array of all unique tags.
+	* Returns an unsorted array of all unique tags.
 
 ### Post
 
--   **/api/update**
+-   **/api/update/:id**
 	* Updates a link entry.
 	* Pushes new date into updated_at array.
 	* Post body:
-		* \_id (required)
-		* any field with new value
-		* example:
-	* Example:
+		* any valid field with new value
+		* Example:
 
-			{ _id: 1234, name: "new name" }
+				{ name: "new name" }
 -   **/api/create**
 	* Creates a new link entry using Link schema.
 	* Example:
